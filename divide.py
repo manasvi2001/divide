@@ -11,6 +11,19 @@ class Divide:
     self.currentNumber = 0
     self.temporaryNumber = 0
 
+  def reset(self):
+    size = 0
+    while (size < 3 or size > 6):
+      size = int(input("Enter size of game board (3-6): "))
+    self.score = 0
+    self.size = size
+    self.layout = [[0 for i in range(self.size)] for j in range(self.size)]
+    self.indices = [0, 0]
+    self.primes = [2,3,5,7,11,13,17,19]
+    self.numbersOnBoard = []
+    self.currentNumber = 0
+    self.temporaryNumber = 0
+
   def startGame(self):
     self.indices = self.randomIndices()
     self.currentNumber = self.generateNumber(True)
@@ -102,6 +115,7 @@ class Divide:
     if (self.isGameOver()):
       print("You played well. Try beating the score. Final score: %d"% (self.score))
       if (input("Do you want to play again?(Y/N): ") == 'Y'):
+        self.reset()
         self.startGame()
       else:
         exit()
